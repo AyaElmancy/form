@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+
+    <h2>Contact Form</h2>
+    <form id="contactForm" onsubmit="return validateForm()">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name"><br>
+        <div id="nameError" style="color: red;"></div><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <div id="emailError" style="color: red;"></div><br>
+
+        <label for="number">Phone Number:</label>
+        <input type="text" id="Number" name="Number"><br>
+        <div id="messageError" style="color: red;"></div><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            // مسح أي رسائل خطأ قديمة
+            let isValid = true;
+
+            document.getElementById("nameError").innerHTML = '';
+            document.getElementById("emailError").innerHTML = '';
+            document.getElementById("messageError").innerHTML = '';
+
+            // الحصول على القيم المدخلة
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("Number").value;
+
+            // التحقق من الحقول
+            if (name.trim() === '') {
+                document.getElementById("nameError").innerHTML = 'Full Name Required';
+                isValid = false;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (email.trim() === '') {
+                document.getElementById("emailError").innerHTML = 'Email Required';
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerHTML = 'please enter your emaile';
+                isValid = false;
+            }
+
+            if (message.trim() === '') {
+                document.getElementById("messageError").innerHTML = 'phone number required';
+                isValid = false;
+            }
+
+            // إذا كانت البيانات كلها صحيحة، سيتم إرسال النموذج
+            if (isValid) {
+                alert("the form was sent succssfully");
+            }
+
+            return isValid; // إذا كانت صحيحة، يتم تقديم النموذج
+        }
+    </script>
+
+</body>
+</html>
